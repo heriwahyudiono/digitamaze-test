@@ -3,7 +3,15 @@
     <Sidebar />
 
     <div class="ml-16 md:ml-64 p-4 md:p-6 w-full transition-all duration-300">
-      <h1 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Classes</h1>
+      <div class="flex justify-between items-center mb-4 md:mb-6">
+        <h1 class="text-xl md:text-2xl font-bold">Classes</h1>
+        <Link 
+          href="/classes/create" 
+          class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+        >
+          + Add Class
+        </Link>
+      </div>
 
       <div class="overflow-x-auto">
         <table class="min-w-full bg-white border rounded shadow text-sm md:text-base">
@@ -49,7 +57,7 @@
 </template>
 
 <script setup>
-import { router } from '@inertiajs/vue3';
+import { router, Link } from '@inertiajs/vue3';
 import Sidebar from '@/components/Sidebar.vue';
 
 defineProps({
