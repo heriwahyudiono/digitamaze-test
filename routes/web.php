@@ -12,7 +12,7 @@ use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
 
 Route::middleware('guest')->group(function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::get('/', [AuthController::class, 'login'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 
     Route::get('/register', [AuthController::class, 'register'])->name('register');

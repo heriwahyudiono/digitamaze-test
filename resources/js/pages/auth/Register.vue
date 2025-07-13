@@ -63,7 +63,7 @@
 
       <div class="mt-4 text-center">
         <span>Already have an account?</span>
-        <Link href="/login" class="text-blue-600 hover:underline ml-1">Login</Link>
+        <Link href="/" class="text-blue-600 hover:underline ml-1">Login</Link>
       </div>
     </div>
   </div>
