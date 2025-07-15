@@ -8,12 +8,20 @@ use Inertia\Inertia;
 
 class ClassController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $classes = ClassModel::with(['students', 'teachers'])->get();
+        $classes = ClassModel::with(['students', 'teachers'])
+            ->when($request->class_id, function ($query) use ($request) {
+                return $query->where('id', $request->class_id);
+            })
+            ->get();
+
+        $classOptions = ClassModel::select('id', 'class_name')->get();
 
         return Inertia::render('classes/Classes', [
-            'classes' => $classes
+            'classes' => $classes,
+            'classOptions' => $classOptions,
+            'filters' => $request->only(['class_id'])
         ]);
     }
 

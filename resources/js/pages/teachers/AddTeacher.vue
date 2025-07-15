@@ -32,7 +32,7 @@
               class="w-full border p-2 rounded" 
               required
             >
-              <option value="" disabled>Select Gender</option>
+              <option value="" disabled>-- Select Gender --</option>
               <option value="male">Male</option>
               <option value="female">Female</option>
             </select>
@@ -45,7 +45,7 @@
               class="w-full border p-2 rounded" 
               required
             >
-              <option value="" disabled>Select Class</option>
+              <option value="" disabled>-- Select Class --</option>
               <option 
                 v-for="kelas in classes" 
                 :key="kelas.id" 
@@ -59,7 +59,7 @@
           <div class="pt-4">
             <button 
               type="submit" 
-              class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+              class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
             >
               Save
             </button>
