@@ -9,12 +9,20 @@ use Inertia\Inertia;
 
 class TeacherController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $teachers = Teacher::with('class')->get();
+        $teachers = Teacher::with('class')
+            ->when($request->class_id, function ($query) use ($request) {
+                return $query->where('class_id', $request->class_id);
+            })
+            ->get();
+
+        $classes = ClassModel::all();
 
         return Inertia::render('teachers/Teachers', [
-            'teachers' => $teachers
+            'teachers' => $teachers,
+            'classes' => $classes,
+            'filters' => $request->only(['class_id'])
         ]);
     }
 

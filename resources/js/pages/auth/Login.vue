@@ -1,34 +1,66 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="w-full max-w-md bg-white p-8 rounded shadow">
-      <h2 class="text-2xl font-bold text-center mb-6">Login</h2>
+  <div class="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="w-100" style="max-width: 400px;">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <h2 class="text-center mb-4">Login</h2>
 
-      <form @submit.prevent="submit">
-        <div class="mb-4">
-          <label for="email" class="block text-gray-700">Email</label>
-          <input v-model="form.email" type="email" id="email" class="w-full mt-1 p-2 border rounded" required />
-          <div v-if="errors.email" class="text-red-500 text-sm mt-1">{{ errors.email }}</div>
+          <form @submit.prevent="submit">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input 
+                v-model="form.email" 
+                type="email" 
+                id="email" 
+                class="form-control" 
+                :class="{ 'is-invalid': errors.email }"
+                required 
+              />
+              <div v-if="errors.email" class="invalid-feedback">
+                {{ errors.email }}
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input 
+                v-model="form.password" 
+                type="password" 
+                id="password" 
+                class="form-control" 
+                :class="{ 'is-invalid': errors.password }"
+                required 
+              />
+              <div v-if="errors.password" class="invalid-feedback">
+                {{ errors.password }}
+              </div>
+            </div>
+
+            <div class="mb-3 form-check">
+              <input 
+                v-model="form.remember" 
+                type="checkbox" 
+                id="remember" 
+                class="form-check-input" 
+              />
+              <label for="remember" class="form-check-label">Remember me</label>
+            </div>
+
+            <button 
+              type="submit" 
+              class="btn btn-primary w-100 py-2"
+              :disabled="form.processing"
+            >
+              <span v-if="form.processing" class="spinner-border spinner-border-sm me-1" role="status" aria-hidden="true"></span>
+              Login
+            </button>
+          </form>
+
+          <div class="mt-3 text-center">
+            <span>Belum punya akun?</span>
+            <Link href="/register" class="ms-1 text-primary text-decoration-none">Register</Link>
+          </div>
         </div>
-
-        <div class="mb-4">
-          <label for="password" class="block text-gray-700">Password</label>
-          <input v-model="form.password" type="password" id="password" class="w-full mt-1 p-2 border rounded" required />
-          <div v-if="errors.password" class="text-red-500 text-sm mt-1">{{ errors.password }}</div>
-        </div>
-
-        <div class="mb-4 flex items-center">
-          <input v-model="form.remember" type="checkbox" id="remember" class="mr-2" />
-          <label for="remember" class="text-gray-700">Remember me</label>
-        </div>
-
-        <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
-          Login
-        </button>
-      </form>
-
-      <div class="mt-4 text-center">
-        <span>Belum punya akun?</span>
-        <Link href="/register" class="text-blue-600 hover:underline ml-1">Register</Link>
       </div>
     </div>
   </div>

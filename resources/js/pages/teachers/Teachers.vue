@@ -10,6 +10,21 @@
       </Link>
     </div>
 
+    <div class="mb-4">
+      <label for="classFilter" class="block text-sm font-medium text-gray-700 mb-1">Filter by Class:</label>
+      <select 
+        id="classFilter" 
+        v-model="selectedClass"
+        @change="filterTeachers"
+        class="block w-full md:w-64 px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+      >
+        <option value="">All Classes</option>
+        <option v-for="classItem in classes" :key="classItem.id" :value="classItem.id">
+          {{ classItem.class_name }}
+        </option>
+      </select>
+    </div>
+
     <div class="overflow-x-auto">
       <table class="min-w-full bg-white border rounded shadow text-sm md:text-base">
         <thead class="bg-gray-100 text-left">
@@ -56,11 +71,23 @@
 
 <script setup>
 import { router, Link } from '@inertiajs/vue3';
+import { ref } from 'vue';
 import AppLayout from '@/layouts/AppLayout.vue';
 
-defineProps({
+const props = defineProps({
   teachers: Array,
+  classes: Array,
+  filters: Object,
 });
+
+const selectedClass = ref(props.filters.class_id || '');
+
+function filterTeachers() {
+  router.get('/teachers', { class_id: selectedClass.value }, {
+    preserveState: true,
+    replace: true
+  });
+}
 
 function editTeacher(id) {
   router.visit(`/teachers/${id}/edit`);
