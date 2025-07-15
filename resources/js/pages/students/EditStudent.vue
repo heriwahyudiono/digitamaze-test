@@ -1,38 +1,38 @@
 <template>
   <AppLayout>
-    <div class="max-w-4xl mx-auto p-4 md:p-6">
-      <h1 class="text-xl md:text-2xl font-bold mb-4 md:mb-6">Edit Student</h1>
+    <div class="max-w-4xl mx-auto p-4 md:p-6 text-black">
+      <h1 class="text-xl md:text-2xl font-bold mb-4 md:mb-6 text-black">Edit Student</h1>
 
-      <div class="bg-white rounded-lg shadow p-6">
-        <form @submit.prevent="submit" class="space-y-4">
+      <div class="bg-white rounded-lg shadow p-6 text-black">
+        <form @submit.prevent="submit" class="space-y-4 text-black">
           <div>
-            <label for="name" class="block font-semibold mb-1">Name</label>
+            <label for="name" class="block font-semibold mb-1 text-black">Name</label>
             <input 
               v-model="form.name" 
               type="text" 
               id="name" 
-              class="w-full border p-2 rounded"
+              class="w-full border p-2 rounded text-black placeholder:text-gray-400"
             >
             <span class="text-red-500 text-sm" v-if="errors.name">{{ errors.name }}</span>
           </div>
 
           <div>
-            <label for="email" class="block font-semibold mb-1">Email</label>
+            <label for="email" class="block font-semibold mb-1 text-black">Email</label>
             <input 
               v-model="form.email" 
               type="email" 
               id="email" 
-              class="w-full border p-2 rounded"
+              class="w-full border p-2 rounded text-black placeholder:text-gray-400"
             >
             <span class="text-red-500 text-sm" v-if="errors.email">{{ errors.email }}</span>
           </div>
 
           <div>
-            <label for="gender" class="block font-semibold mb-1">Gender</label>
+            <label for="gender" class="block font-semibold mb-1 text-black">Gender</label>
             <select 
               v-model="form.gender" 
               id="gender" 
-              class="w-full border p-2 rounded"
+              class="w-full border p-2 rounded text-black"
             >
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -41,11 +41,11 @@
           </div>
 
           <div>
-            <label for="class_id" class="block font-semibold mb-1">Class</label>
+            <label for="class_id" class="block font-semibold mb-1 text-black">Class</label>
             <select 
               v-model="form.class_id" 
               id="class_id" 
-              class="w-full border p-2 rounded"
+              class="w-full border p-2 rounded text-black"
             >
               <option 
                 v-for="kelas in classes" 

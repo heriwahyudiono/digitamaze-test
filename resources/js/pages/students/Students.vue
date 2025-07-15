@@ -1,6 +1,6 @@
 <template>
   <AppLayout>
-    <div class="flex justify-between items-center mb-4 md:mb-6">
+    <div class="flex justify-between items-center mb-4 md:mb-6 text-black">
       <h1 class="text-xl md:text-2xl font-bold text-black">Students</h1>
       <div class="flex items-center space-x-4">
         <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
@@ -31,7 +31,7 @@
               <AdjustmentsHorizontalIcon class="h-5 w-5" />
               <span class="ml-1 text-sm hidden sm:inline text-black">All</span>
             </button>
-            <div v-if="showFilter" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+            <div v-if="showFilter" class="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10 text-black">
               <select 
                 v-model="selectedClass"
                 @change="filterStudents"
@@ -55,8 +55,8 @@
       </div>
     </div>
 
-    <div v-if="viewMode === 'table'" class="overflow-x-auto">
-      <table class="min-w-full bg-white border rounded shadow text-sm md:text-base">
+    <div v-if="viewMode === 'table'" class="overflow-x-auto text-black">
+      <table class="min-w-full bg-white border rounded shadow text-sm md:text-base text-black">
         <thead class="bg-gray-100">
           <tr>
             <th class="px-4 py-2 border text-center text-black">#</th>
@@ -101,11 +101,11 @@
       </table>
     </div>
 
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 text-black">
       <div 
         v-for="(student, index) in students"
         :key="student.id"
-        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+        class="bg-white rounded-lg shadow-md overflow-hidden transition-transform duration-300 hover:scale-105 hover:shadow-lg text-black"
       >
         <div class="bg-gray-200 h-40 flex items-center justify-center">
           <div class="relative w-24 h-24 rounded-full bg-indigo-100 flex items-center justify-center">
@@ -116,9 +116,9 @@
           <div class="flex justify-between items-start">
             <div>
               <h3 class="font-bold text-lg text-black">{{ student.name }}</h3>
-              <p class="text-gray-600 capitalize">{{ student.gender }}</p>
-              <p class="text-sm text-gray-500">{{ student.class?.class_name || 'No class' }}</p>
-              <p class="text-sm text-gray-500">{{ student.email }}</p>
+              <p class="text-gray-600 capitalize text-black">{{ student.gender }}</p>
+              <p class="text-sm text-gray-500 text-black">{{ student.class?.class_name || 'No class' }}</p>
+              <p class="text-sm text-gray-500 text-black">{{ student.email }}</p>
             </div>
             <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
               #{{ index + 1 }}

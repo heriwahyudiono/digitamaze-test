@@ -1,9 +1,9 @@
 <template>
   <AppLayout>
-    <div class="flex justify-between items-center mb-4 md:mb-6">
+    <div class="flex justify-between items-center mb-4 md:mb-6 text-black">
       <h1 class="text-xl md:text-2xl font-bold text-black">Teachers</h1>
-      <div class="flex items-center space-x-4">
-        <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1">
+      <div class="flex items-center space-x-4 text-black">
+        <div class="flex items-center space-x-2 bg-gray-100 rounded-md p-1 text-black">
           <button 
             @click="viewMode = 'table'" 
             :class="{ 'bg-white shadow-sm': viewMode === 'table' }" 
@@ -60,8 +60,8 @@
       </div>
     </div>
 
-    <div v-if="viewMode === 'table'" class="overflow-x-auto">
-      <table class="min-w-full bg-white border rounded shadow text-sm md:text-base">
+    <div v-if="viewMode === 'table'" class="overflow-x-auto text-black">
+      <table class="min-w-full bg-white border rounded shadow text-sm md:text-base text-black">
         <thead class="bg-gray-100">
           <tr>
             <th class="px-4 py-2 border text-center text-black">#</th>
@@ -76,14 +76,14 @@
           <tr
             v-for="(teacher, index) in teachers"
             :key="teacher.id"
-            class="hover:bg-gray-50"
+            class="hover:bg-gray-50 text-black"
           >
             <td class="px-4 py-2 border text-center text-black">{{ index + 1 }}</td>
             <td class="px-4 py-2 border text-left text-black">{{ teacher.name }}</td>
             <td class="px-4 py-2 border text-left capitalize text-black">{{ teacher.gender }}</td>
             <td class="px-4 py-2 border text-left text-black">{{ teacher.email }}</td>
             <td class="px-4 py-2 border text-center text-black">{{ teacher.class?.class_name || '-' }}</td>
-            <td class="px-4 py-2 border">
+            <td class="px-4 py-2 border text-black">
               <div class="flex justify-center space-x-2">
                 <button
                   class="flex items-center px-3 py-1 text-xs md:text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
@@ -106,7 +106,7 @@
       </table>
     </div>
 
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 text-black">
       <div 
         v-for="(teacher, index) in teachers"
         :key="teacher.id"
@@ -117,7 +117,7 @@
             <span class="text-3xl font-bold text-indigo-600">{{ teacher.name.charAt(0) }}</span>
           </div>
         </div>
-        <div class="p-4">
+        <div class="p-4 text-black">
           <div class="flex justify-between items-start">
             <div>
               <h3 class="font-bold text-lg text-black">{{ teacher.name }}</h3>
@@ -152,9 +152,9 @@
 </template>
 
 <script setup>
-import { router, Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import AppLayout from '@/layouts/AppLayout.vue';
+import { router, Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
+import AppLayout from '@/layouts/AppLayout.vue'
 import { 
   AdjustmentsHorizontalIcon,
   PlusIcon, 
@@ -162,32 +162,32 @@ import {
   TrashIcon, 
   TableCellsIcon, 
   Squares2X2Icon 
-} from '@heroicons/vue/24/outline';
+} from '@heroicons/vue/24/outline'
 
 const props = defineProps({
   teachers: Array,
   classes: Array,
   filters: Object,
-});
+})
 
-const selectedClass = ref(props.filters.class_id || '');
-const viewMode = ref('table');
-const showFilter = ref(false);
+const selectedClass = ref(props.filters.class_id || '')
+const viewMode = ref('table')
+const showFilter = ref(false)
 
 function filterTeachers() {
   router.get('/teachers', { class_id: selectedClass.value }, {
     preserveState: true,
     replace: true
-  });
+  })
 }
 
 function editTeacher(id) {
-  router.visit(`/teachers/${id}/edit`);
+  router.visit(`/teachers/${id}/edit`)
 }
 
 function deleteTeacher(id) {
   if (confirm('Are you sure you want to delete this teacher?')) {
-    router.delete(`/teachers/${id}`);
+    router.delete(`/teachers/${id}`)
   }
 }
 </script>

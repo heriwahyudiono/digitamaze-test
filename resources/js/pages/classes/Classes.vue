@@ -61,7 +61,7 @@
     </div>
 
     <div v-if="viewMode === 'table'" class="overflow-x-auto">
-      <table class="min-w-full bg-white border rounded shadow text-sm md:text-base">
+      <table class="min-w-full bg-white border rounded shadow text-sm md:text-base text-black">
         <thead class="bg-gray-100">
           <tr>
             <th class="px-4 py-2 border text-center text-black">#</th>
@@ -104,7 +104,7 @@
       </table>
     </div>
 
-    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+    <div v-else class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 text-black">
       <div 
         v-for="(kelas, index) in classes"
         :key="kelas.id"
@@ -115,12 +115,12 @@
             <span class="text-3xl font-bold text-indigo-600">{{ kelas.class_name.charAt(0) }}</span>
           </div>
         </div>
-        <div class="p-4">
+        <div class="p-4 text-black">
           <div class="flex justify-between items-start">
             <div>
               <h3 class="font-bold text-lg text-black">{{ kelas.class_name }}</h3>
-              <p class="text-sm text-gray-600">Students: {{ kelas.students?.length || 0 }}</p>
-              <p class="text-sm text-gray-600">Teachers: {{ kelas.teachers?.length || 0 }}</p>
+              <p class="text-sm text-black">Students: {{ kelas.students?.length || 0 }}</p>
+              <p class="text-sm text-black">Teachers: {{ kelas.teachers?.length || 0 }}</p>
             </div>
             <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded">
               #{{ index + 1 }}
@@ -149,9 +149,9 @@
 </template>
 
 <script setup>
-import { router, Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import AppLayout from '@/layouts/AppLayout.vue';
+import { router, Link } from '@inertiajs/vue3'
+import { ref } from 'vue'
+import AppLayout from '@/layouts/AppLayout.vue'
 import {
   AdjustmentsHorizontalIcon,
   PlusIcon,
@@ -159,32 +159,32 @@ import {
   TrashIcon,
   TableCellsIcon,
   Squares2X2Icon
-} from '@heroicons/vue/24/outline';
+} from '@heroicons/vue/24/outline'
 
 const props = defineProps({
   classes: Array,
   classOptions: Array,
   filters: Object
-});
+})
 
-const selectedClass = ref(props.filters.class_id || '');
-const viewMode = ref('table');
-const showFilter = ref(false);
+const selectedClass = ref(props.filters.class_id || '')
+const viewMode = ref('table')
+const showFilter = ref(false)
 
 function filterClasses() {
   router.get('/classes', { class_id: selectedClass.value }, {
     preserveState: true,
     replace: true
-  });
+  })
 }
 
 function editClass(id) {
-  router.visit(`/classes/${id}/edit`);
+  router.visit(`/classes/${id}/edit`)
 }
 
 function deleteClass(id) {
   if (confirm('Are you sure you want to delete this class?')) {
-    router.delete(`/classes/${id}`);
+    router.delete(`/classes/${id}`)
   }
 }
 </script>
