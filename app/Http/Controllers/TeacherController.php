@@ -46,7 +46,7 @@ class TeacherController extends Controller
 
         Teacher::create($request->all());
 
-        return redirect()->route('teachers.index')->with('success', 'Teacher added successfully.');
+        return redirect()->route('teachers.index')->with('success', 'Teacher added successfully');
     }
 
     public function edit($id)
@@ -72,7 +72,7 @@ class TeacherController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->update($request->all());
 
-        return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully.');
+        return redirect()->route('teachers.index')->with('success', 'Teacher updated successfully');
     }
 
     public function destroy($id)
@@ -80,6 +80,6 @@ class TeacherController extends Controller
         $teacher = Teacher::findOrFail($id);
         $teacher->delete();
 
-        return redirect()->back()->with('success', 'Teacher deleted successfully.');
+        return redirect()->back()->with('success', 'Teacher deleted successfully');
     }
 }

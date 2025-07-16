@@ -46,7 +46,7 @@ class StudentController extends Controller
 
         Student::create($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student added successfully.');
+        return redirect()->route('students.index')->with('success', 'Student added successfully');
     }
 
     public function edit($id)
@@ -72,7 +72,7 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->update($request->all());
 
-        return redirect()->route('students.index')->with('success', 'Student updated successfully.');
+        return redirect()->route('students.index')->with('success', 'Student updated successfully');
     }
 
     public function destroy($id)
@@ -80,6 +80,6 @@ class StudentController extends Controller
         $student = Student::findOrFail($id);
         $student->delete();
 
-        return redirect()->back()->with('success', 'Student deleted successfully.');
+        return redirect()->back()->with('success', 'Student deleted successfully');
     }
 }

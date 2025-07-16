@@ -40,7 +40,7 @@ class ClassController extends Controller
             'class_name' => $request->class_name
         ]);
 
-        return redirect()->route('classes.index')->with('success', 'Class created successfully.');
+        return redirect()->route('classes.index')->with('success', 'Class created successfully');
     }
 
     public function edit($id)
@@ -63,7 +63,7 @@ class ClassController extends Controller
             'class_name' => $request->class_name
         ]);
 
-        return redirect()->route('classes.index')->with('success', 'Class updated successfully.');
+        return redirect()->route('classes.index')->with('success', 'Class updated successfully');
     }
 
     public function destroy($id)
@@ -71,6 +71,6 @@ class ClassController extends Controller
         $class = Kelas::findOrFail($id);
         $class->delete();
 
-        return redirect()->route('classes.index')->with('success', 'Class deleted successfully.');
+        return redirect()->route('classes.index')->with('success', 'Class deleted successfully');
     }
 }
