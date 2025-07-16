@@ -21,7 +21,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth')->n
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [DashboardController::class, 'index'])->name('home');
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile');
+    Route::get('/profile', [UserController::class, 'show'])->name('profile');
     Route::get('/settings', fn () => Inertia::render('Settings'))->name('settings');
     Route::post('/update-password', [UserController::class, 'updatePassword'])->name('password.update');
 
