@@ -53,7 +53,7 @@
 
         <button
           type="submit"
-          class="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded"
+          class="w-full bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded"
           :disabled="form.processing"
         >
           <span v-if="form.processing">Processing...</span>
