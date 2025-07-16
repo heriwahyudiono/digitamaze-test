@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassModel;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -10,13 +10,13 @@ class ClassController extends Controller
 {
     public function index(Request $request)
     {
-        $classes = ClassModel::with(['students', 'teachers'])
+        $classes = Kelas::with(['students', 'teachers'])
             ->when($request->class_id, function ($query) use ($request) {
                 return $query->where('id', $request->class_id);
             })
             ->get();
 
-        $classOptions = ClassModel::select('id', 'class_name')->get();
+        $classOptions = Kelas::select('id', 'class_name')->get();
 
         return Inertia::render('classes/Classes', [
             'classes' => $classes,
@@ -36,7 +36,7 @@ class ClassController extends Controller
             'class_name' => 'required|string|max:100',
         ]);
 
-        ClassModel::create([
+        Kelas::create([
             'class_name' => $request->class_name
         ]);
 
@@ -45,7 +45,7 @@ class ClassController extends Controller
 
     public function edit($id)
     {
-        $class = ClassModel::findOrFail($id);
+        $class = Kelas::findOrFail($id);
 
         return Inertia::render('classes/EditClass', [
             'classData' => $class
@@ -58,7 +58,7 @@ class ClassController extends Controller
             'class_name' => 'required|string|max:100',
         ]);
 
-        $class = ClassModel::findOrFail($id);
+        $class = Kelas::findOrFail($id);
         $class->update([
             'class_name' => $request->class_name
         ]);
@@ -68,7 +68,7 @@ class ClassController extends Controller
 
     public function destroy($id)
     {
-        $class = ClassModel::findOrFail($id);
+        $class = Kelas::findOrFail($id);
         $class->delete();
 
         return redirect()->route('classes.index')->with('success', 'Class deleted successfully.');

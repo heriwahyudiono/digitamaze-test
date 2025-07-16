@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Student;
 use App\Models\Teacher;
-use App\Models\ClassModel;
+use App\Models\Kelas;
 use Inertia\Inertia;
 
 class DashboardController extends Controller
@@ -14,10 +14,10 @@ class DashboardController extends Controller
         return Inertia::render('Dashboard', [
             'students' => Student::with('class')->get(),
             'teachers' => Teacher::with('class')->get(),
-            'classes'  => ClassModel::with(['students', 'teachers'])->get(),
+            'classes'  => Kelas::with(['students', 'teachers'])->get(),
             'totalStudents' => Student::count(),
             'totalTeachers' => Teacher::count(),
-            'totalClasses'  => ClassModel::count(),
+            'totalClasses'  => Kelas::count(),
         ]);
     }
 }

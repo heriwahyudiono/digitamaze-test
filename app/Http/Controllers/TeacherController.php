@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
-use App\Models\ClassModel;
+use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -17,7 +17,7 @@ class TeacherController extends Controller
             })
             ->get();
 
-        $classes = ClassModel::all();
+        $classes = Kelas::all();
 
         return Inertia::render('teachers/Teachers', [
             'teachers' => $teachers,
@@ -28,7 +28,7 @@ class TeacherController extends Controller
 
     public function create()
     {
-        $classes = ClassModel::all();
+        $classes = Kelas::all();
 
         return Inertia::render('teachers/AddTeacher', [
             'classes' => $classes
@@ -52,7 +52,7 @@ class TeacherController extends Controller
     public function edit($id)
     {
         $teacher = Teacher::findOrFail($id);
-        $classes = ClassModel::all();
+        $classes = Kelas::all();
 
         return Inertia::render('teachers/EditTeacher', [
             'teacher' => $teacher,
